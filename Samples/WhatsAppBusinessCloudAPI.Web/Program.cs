@@ -16,13 +16,17 @@ builder.Services.Configure<WhatsAppBusinessCloudApiConfig>(options =>
     builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration").Bind(options);
 });
 
-WhatsAppBusinessCloudApiConfig whatsAppConfig = new WhatsAppBusinessCloudApiConfig();
-whatsAppConfig.WhatsAppBusinessPhoneNumberId = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["WhatsAppBusinessPhoneNumberId"];
-whatsAppConfig.WhatsAppBusinessAccountId = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["WhatsAppBusinessAccountId"];
-whatsAppConfig.WhatsAppBusinessId = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["WhatsAppBusinessId"];
-whatsAppConfig.AccessToken = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["AccessToken"];
-whatsAppConfig.AppName = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["AppName"];
-whatsAppConfig.Version = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["Version"];
+#pragma warning disable CS8601 // Possible null reference assignment.
+WhatsAppBusinessCloudApiConfig whatsAppConfig = new WhatsAppBusinessCloudApiConfig
+{
+    WhatsAppBusinessPhoneNumberId = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["WhatsAppBusinessPhoneNumberId"],
+    WhatsAppBusinessAccountId = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["WhatsAppBusinessAccountId"],
+    WhatsAppBusinessId = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["WhatsAppBusinessId"],
+    AccessToken = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["AccessToken"],
+    AppName = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["AppName"],
+    Version = builder.Configuration.GetSection("WhatsAppBusinessCloudApiConfiguration")["Version"]
+};
+#pragma warning restore CS8601 // Possible null reference assignment.
 
 builder.Services.AddWhatsAppBusinessCloudApiService(whatsAppConfig);
 
