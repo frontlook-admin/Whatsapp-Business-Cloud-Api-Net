@@ -540,27 +540,29 @@ namespace WhatsappBusiness.CloudApi.Interfaces
         /// <returns>WhatsAppResponse</returns>
         WhatsAppResponse SendLocationMessage(LocationMessageRequest locationMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
-        /// We recommend marking incoming messages as read within 30 days of receipt.
-        /// Note: you cannot mark outgoing messages you sent as read.
-        /// You need to obtain the message_id of the incoming message from Webhooks.
-        /// </summary>
-        /// <param name="markMessage">MarkMessage Object</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>MarkMessageResponse</returns>
-        Task<MarkMessageResponse> MarkMessageAsReadAsync(MarkMessageRequest markMessage, CancellationToken cancellationToken = default);
+		/// <summary>
+		/// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
+		/// We recommend marking incoming messages as read within 30 days of receipt.
+		/// Note: you cannot mark outgoing messages you sent as read.
+		/// You need to obtain the message_id of the incoming message from Webhooks.
+		/// </summary>
+		/// <param name="markMessage">MarkMessage Object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>MarkMessageResponse</returns>
+		Task<MarkMessageResponse> MarkMessageAsReadAsync(MarkMessageRequest markMessage, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
 
-        /// <summary>
-        /// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
-        /// We recommend marking incoming messages as read within 30 days of receipt.
-        /// Note: you cannot mark outgoing messages you sent as read.
-        /// You need to obtain the message_id of the incoming message from Webhooks.
-        /// </summary>
-        /// <param name="markMessage">MarkMessage Object</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>MarkMessageResponse</returns>
-        MarkMessageResponse MarkMessageAsRead(MarkMessageRequest markMessage, CancellationToken cancellationToken = default);
+		/// <summary>
+		/// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
+		/// We recommend marking incoming messages as read within 30 days of receipt.
+		/// Note: you cannot mark outgoing messages you sent as read.
+		/// You need to obtain the message_id of the incoming message from Webhooks.
+		/// </summary>
+		/// <param name="markMessage">MarkMessage Object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>MarkMessageResponse</returns>
+		MarkMessageResponse MarkMessageAsRead(MarkMessageRequest markMessage, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
 
         /// <summary>
         /// Send reaction message reply
@@ -781,7 +783,97 @@ namespace WhatsappBusiness.CloudApi.Interfaces
 		/// <param name="cancellationToken">Cancellation token</param>
 		/// <returns>WhatsAppResponse</returns>
 		WhatsAppResponse SendMPMTemplate(MultiProductTemplateMessageRequest multiProductTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
-		#endregion
+
+        /// <summary>
+        /// Send Catalog Template Message
+        /// </summary>
+        /// <param name="catalogTemplateMessageRequest">CatalogTemplateMessageRequest object</param>
+        /// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>WhatsAppResponse</returns>
+        Task<WhatsAppResponse> SendCatalogMessageTemplateAsync(CatalogTemplateMessageRequest catalogTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		/// <summary>
+		/// Send Catalog Template Message
+		/// </summary>
+		/// <param name="catalogTemplateMessageRequest">CatalogTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		WhatsAppResponse SendCatalogMessageTemplate(CatalogTemplateMessageRequest catalogTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Send Catalog Message
+        /// </summary>
+        /// <param name="catalogMessageRequest">CatalogMessageRequest object</param>
+        /// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>WhatsAppResponse</returns>
+        Task<WhatsAppResponse> SendCatalogMessageAsync(CatalogMessageRequest catalogMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		/// <summary>
+		/// Send Catalog Message
+		/// </summary>
+		/// <param name="catalogMessageRequest">CatalogMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		WhatsAppResponse SendCatalogMessage(CatalogMessageRequest catalogMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Send Carousel Template Message
+        /// </summary>
+        /// <param name="carouselTemplateMessageRequest">CarouselTemplateMessageRequest object</param>
+        /// <param name="cloudApiConfig">Custom WHatsAppBusinessCloudApiConfig</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>WhatsAppResponse</returns>
+        Task<WhatsAppResponse> SendCarouselMessageTemplateAsync(CarouselTemplateMessageRequest carouselTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		/// <summary>
+		/// Send Carousel Template Message
+		/// </summary>
+		/// <param name="carouselTemplateMessageRequest">CarouselTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WHatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		WhatsAppResponse SendCarouselMessageTemplate(CarouselTemplateMessageRequest carouselTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+        /// <summary>
+        /// Send Coupon Code Template Message
+        /// </summary>
+        /// <param name="couponCodeTemplateMessageRequest">CouponCodeTemplateMessageRequest object</param>
+        /// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+        /// <param name="cancellationToken">Cancellation token</param>
+        /// <returns>WhatsAppResponse</returns>
+        Task<WhatsAppResponse> SendCouponCodeMessageTemplateAsync(CouponCodeTemplateMessageRequest couponCodeTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		/// <summary>
+		/// Send Coupon Code Template Message
+		/// </summary>
+		/// <param name="couponCodeTemplateMessageRequest">CouponCodeTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		WhatsAppResponse SendCouponCodeMessageTemplate(CouponCodeTemplateMessageRequest couponCodeTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		/// <summary>
+		/// Send Limited Time Offer Template Message
+		/// </summary>
+		/// <param name="limitedTimeOfferTemplateMessageRequest">LimitedTimeOfferTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		Task<WhatsAppResponse> SendLimitedTimeOfferMessageTemplateAsync(LimitedTimeOfferTemplateMessageRequest limitedTimeOfferTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+
+		/// <summary>
+		/// Send Limited Time Offer Template Message
+		/// </summary>
+		/// <param name="limitedTimeOfferTemplateMessageRequest">LimitedTimeOfferTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		WhatsAppResponse SendLimitedTimeOfferMessageTemplate(LimitedTimeOfferTemplateMessageRequest limitedTimeOfferTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default);
+        #endregion
 
 		#region Two step verification code function
 		/// <summary>

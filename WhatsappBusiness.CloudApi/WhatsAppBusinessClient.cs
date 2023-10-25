@@ -820,33 +820,45 @@ namespace WhatsappBusiness.CloudApi
             return await WhatsAppBusinessGetAsync<PhoneNumberResponse>(formattedWhatsAppEndpoint, cancellationToken);
         }
 
-        /// <summary>
-        /// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
-        /// We recommend marking incoming messages as read within 30 days of receipt.
-        /// Note: you cannot mark outgoing messages you sent as read.
-        /// You need to obtain the message_id of the incoming message from Webhooks.
-        /// </summary>
-        /// <param name="markMessage">MarkMessage Object</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>MarkMessageResponse</returns>
-        public MarkMessageResponse MarkMessageAsRead(MarkMessageRequest markMessage, CancellationToken cancellationToken = default)
+		/// <summary>
+		/// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
+		/// We recommend marking incoming messages as read within 30 days of receipt.
+		/// Note: you cannot mark outgoing messages you sent as read.
+		/// You need to obtain the message_id of the incoming message from Webhooks.
+		/// </summary>
+		/// <param name="markMessage">MarkMessage Object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>MarkMessageResponse</returns>
+		public MarkMessageResponse MarkMessageAsRead(MarkMessageRequest markMessage, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
         {
-            var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.MarkMessageAsRead.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.MarkMessageAsRead.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
             return WhatsAppBusinessPostAsync<MarkMessageResponse>(markMessage, formattedWhatsAppEndpoint, cancellationToken).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
-        /// We recommend marking incoming messages as read within 30 days of receipt.
-        /// Note: you cannot mark outgoing messages you sent as read.
-        /// You need to obtain the message_id of the incoming message from Webhooks.
-        /// </summary>
-        /// <param name="markMessage">MarkMessage Object</param>
-        /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns>MarkMessageResponse</returns>
-        public async Task<MarkMessageResponse> MarkMessageAsReadAsync(MarkMessageRequest markMessage, CancellationToken cancellationToken = default)
+		/// <summary>
+		/// When you receive an incoming message from Webhooks, you could use messages endpoint to change the status of it to read.
+		/// We recommend marking incoming messages as read within 30 days of receipt.
+		/// Note: you cannot mark outgoing messages you sent as read.
+		/// You need to obtain the message_id of the incoming message from Webhooks.
+		/// </summary>
+		/// <param name="markMessage">MarkMessage Object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>MarkMessageResponse</returns>
+		public async Task<MarkMessageResponse> MarkMessageAsReadAsync(MarkMessageRequest markMessage, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
         {
-            var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.MarkMessageAsRead.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.MarkMessageAsRead.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
             return await WhatsAppBusinessPostAsync<MarkMessageResponse>(markMessage, formattedWhatsAppEndpoint, cancellationToken);
         }
 
@@ -1856,6 +1868,173 @@ namespace WhatsappBusiness.CloudApi
 
 			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
 			return WhatsAppBusinessPostAsync<WhatsAppResponse>(multiProductTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Send Catalog Template Message
+		/// </summary>
+		/// <param name="catalogTemplateMessageRequest">CatalogTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public async Task<WhatsAppResponse> SendCatalogMessageTemplateAsync(CatalogTemplateMessageRequest catalogTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+		{
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return await WhatsAppBusinessPostAsync<WhatsAppResponse>(catalogTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken);
+		}
+
+		/// <summary>
+		/// Send Catalog Template Message
+		/// </summary>
+		/// <param name="catalogTemplateMessageRequest">CatalogTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public WhatsAppResponse SendCatalogMessageTemplate(CatalogTemplateMessageRequest catalogTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+		{
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return WhatsAppBusinessPostAsync<WhatsAppResponse>(catalogTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Send Catalog Message
+		/// </summary>
+		/// <param name="catalogMessageRequest">CatalogMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public async Task<WhatsAppResponse> SendCatalogMessageAsync(CatalogMessageRequest catalogMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+        {
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return await WhatsAppBusinessPostAsync<WhatsAppResponse>(catalogMessageRequest, formattedWhatsAppEndpoint, cancellationToken);
+		}
+
+		/// <summary>
+		/// Send Catalog Message
+		/// </summary>
+		/// <param name="catalogMessageRequest">CatalogMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public WhatsAppResponse SendCatalogMessage(CatalogMessageRequest catalogMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+        {
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return WhatsAppBusinessPostAsync<WhatsAppResponse>(catalogMessageRequest, formattedWhatsAppEndpoint, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Send Carousel Template Message
+		/// </summary>
+		/// <param name="carouselTemplateMessageRequest">CarouselTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WHatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public async Task<WhatsAppResponse> SendCarouselMessageTemplateAsync(CarouselTemplateMessageRequest carouselTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+		{
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return await WhatsAppBusinessPostAsync<WhatsAppResponse>(carouselTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken);
+		}
+
+		/// <summary>
+		/// Send Carousel Template Message
+		/// </summary>
+		/// <param name="carouselTemplateMessageRequest">CarouselTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WHatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public WhatsAppResponse SendCarouselMessageTemplate(CarouselTemplateMessageRequest carouselTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+		{
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return WhatsAppBusinessPostAsync<WhatsAppResponse>(carouselTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		/// <summary>
+		/// Send Coupon Code Template Message
+		/// </summary>
+		/// <param name="couponCodeTemplateMessageRequest">CouponCodeTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public async Task<WhatsAppResponse> SendCouponCodeMessageTemplateAsync(CouponCodeTemplateMessageRequest couponCodeTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+		{
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return await WhatsAppBusinessPostAsync<WhatsAppResponse>(couponCodeTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken);
+		}
+
+		/// <summary>
+		/// Send Coupon Code Template Message
+		/// </summary>
+		/// <param name="couponCodeTemplateMessageRequest">CouponCodeTemplateMessageRequest object</param>
+		/// <param name="cloudApiConfig">Custom WhatsAppBusinessCloudApiConfig</param>
+		/// <param name="cancellationToken">Cancellation token</param>
+		/// <returns>WhatsAppResponse</returns>
+		public WhatsAppResponse SendCouponCodeMessageTemplate(CouponCodeTemplateMessageRequest couponCodeTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+		{
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return WhatsAppBusinessPostAsync<WhatsAppResponse>(couponCodeTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken).GetAwaiter().GetResult();
+		}
+
+		public async Task<WhatsAppResponse> SendLimitedTimeOfferMessageTemplateAsync(LimitedTimeOfferTemplateMessageRequest limitedTimeOfferTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+        {
+			if (cloudApiConfig is not null)
+			{
+				_whatsAppConfig = cloudApiConfig;
+			}
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return await WhatsAppBusinessPostAsync<WhatsAppResponse>(limitedTimeOfferTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken);
+		}
+
+
+		public WhatsAppResponse SendLimitedTimeOfferMessageTemplate(LimitedTimeOfferTemplateMessageRequest limitedTimeOfferTemplateMessageRequest, WhatsAppBusinessCloudApiConfig? cloudApiConfig = null, CancellationToken cancellationToken = default)
+        {
+            if (cloudApiConfig is not null)
+            {
+                _whatsAppConfig = cloudApiConfig;
+            }
+
+			var formattedWhatsAppEndpoint = WhatsAppBusinessRequestEndpoint.SendMessage.Replace("{{Phone-Number-ID}}", _whatsAppConfig.WhatsAppBusinessPhoneNumberId);
+			return WhatsAppBusinessPostAsync<WhatsAppResponse>(limitedTimeOfferTemplateMessageRequest, formattedWhatsAppEndpoint, cancellationToken).GetAwaiter().GetResult();
 		}
 
 		/// <summary>
